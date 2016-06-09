@@ -198,8 +198,14 @@ var getCellContent = function(yasr, plugin, bindings, sparqlVar, context) {
 				title = href;
 			}
 		}
+		//var lastSlashIndex = visibleString.lastIndexOf("/");
+		var lastHashIndex = href.lastIndexOf("#");
+		var lastSlashIndex = href.lastIndexOf("/");
+		var ind = (lastHashIndex > lastSlashIndex) ? lastHashIndex : lastSlashIndex;
+		var hrefPref = href.substring(0, ind+1);
+		var hrefLocal = href.substring(ind+1);
 		value = "\
-				<a class='uri' onclick='descr(\""+href+"\");' href='#'>&lt;" + visibleString + "&gt;</a> \
+				<a class='uri' onclick='descr(\""+href+"\");' href='#'><span style='font-size:70%;'>"+hrefPref+"</span><br /><strong>" + hrefLocal + "</strong></a> \
 				<a class='uri' target='_blank' href='"+href+"'><i class='fa fa-external-link' aria-hidden='true'></i></a> \
 				";
 	} else {
