@@ -198,7 +198,10 @@ var getCellContent = function(yasr, plugin, bindings, sparqlVar, context) {
 				title = href;
 			}
 		}
-		value = "<a " + (title ? "title='" + href + "' " : "") + "class='uri' target='_blank' href='" + href + "'>" + visibleString + "</a>";
+		value = "\
+				<a class='uri' onclick='descr(\""+href+"\");' href='#'>&lt;" + visibleString + "&gt;</a> \
+				<a class='uri' target='_blank' href='"+href+"'><i class='fa fa-external-link' aria-hidden='true'></i></a> \
+				";
 	} else {
 		value = "<span class='nonUri'>" + formatLiteral(yasr, plugin, binding) + "</span>";
 	}
